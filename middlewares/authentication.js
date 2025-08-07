@@ -8,7 +8,7 @@ function authentication(req, res, next) {
     if (!token) return res.status(401).send({ message: "No Auth" });
 
     const decoded = jwt.verify(token, process.env.SECRET_KEY);
-    const user = users.find((user) => (user.id = decoded));
+    const user = users.find((user) => user.id === decoded);
     req.user = user;
 
     next();
